@@ -19,7 +19,7 @@
 
 | 에이전트 | 역할 | 주요 통합 |
 |----------|------|-----------|
-| `blog-writer` | PAAR 구조 기술 블로그 작성 | Tistory, GitHub, Obsidian |
+| `blog-writer` | PAAR 구조 기술 블로그 작성 | Tistory, Obsidian |
 | `weekly-report` | 연구실 주간보고서 작성 | Notion, 로컬 저장 |
 | `schedule-briefer` | 일간 브리핑 (캘린더·Notion·Gmail·Slack·학교 공지) | Slack (`--slack` 플래그로 전송) |
 | `project-notes` | 개발 마일스톤 문서화 | `~/Notes/Projects/`, dev-notes |
