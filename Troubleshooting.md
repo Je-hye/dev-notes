@@ -27,3 +27,10 @@ python3 -c "import sys; sys.path.append('.'); import step4_evaluate; print('Synt
 2. VS Code에서 `workeBackEnd/WorkeBackEndApplication.java` 실행
 
 > ※ `application.yaml`은 Git에 절대 올리지 않기
+
+---
+
+## [Python] backend/app/agent/embeddings.py IndentationError: unexpected indent
+**상황:** `test_todos_api.py` 실행 시 백엔드 초기화 과정에서 `embeddings.py`를 임포트하던 중 `IndentationError` 발생
+**원인:** `store_goal_embedding` 함수 내부의 `async with AsyncSessionLocal() as db:` 세션 블록 인덴트가 중간에 끊기고, 이후 DB 저장 관련 로직에서 들여쓰기(indentation)가 불일치하여 발생
+**해결:** `store_goal_embedding` 함수의 모든 DB 관련 비즈니스 로직을 `async with` 세션 블록 하위로 올바르게 들여쓰기하여 감싸도록 수정
