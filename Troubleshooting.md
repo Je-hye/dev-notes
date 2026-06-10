@@ -41,3 +41,10 @@ python3 -c "import sys; sys.path.append('.'); import step4_evaluate; print('Synt
 **상황:** Codex 시작 후 MCP 도구 목록 로딩 중 `pycharm` 서버가 응답하지 않음
 **원인:** `/Users/User/.codex/config.toml`에 `http://127.0.0.1:64342/stream` PyCharm MCP 서버가 등록되어 있었지만 해당 포트에 리스닝 프로세스가 없었음
 **해결:** 사용하지 않는 `pycharm` MCP 서버 등록을 `.codex/config.toml`에서 제거
+
+---
+
+## [Antigravity] CLI 로그인 및 MCP 설정 오류
+**상황:** `agy models`와 Antigravity CLI 실행 시 로그인되지 않았다는 오류와 MCP JSON 파싱 오류가 발생
+**원인:** Antigravity keyring 인증이 완료되지 않았고 `~/.gemini/config/mcp_config.json` 등 MCP 설정 파일 3개가 빈 파일이었음
+**해결:** Antigravity 대화형 CLI로 Google 계정 로그인을 완료하고 빈 MCP 설정 파일을 유효한 `{}` JSON으로 수정한 뒤, `agy models`와 실제 모델 요청 성공을 확인
