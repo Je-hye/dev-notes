@@ -34,3 +34,10 @@ python3 -c "import sys; sys.path.append('.'); import step4_evaluate; print('Synt
 **상황:** `test_todos_api.py` 실행 시 백엔드 초기화 과정에서 `embeddings.py`를 임포트하던 중 `IndentationError` 발생
 **원인:** `store_goal_embedding` 함수 내부의 `async with AsyncSessionLocal() as db:` 세션 블록 인덴트가 중간에 끊기고, 이후 DB 저장 관련 로직에서 들여쓰기(indentation)가 불일치하여 발생
 **해결:** `store_goal_embedding` 함수의 모든 DB 관련 비즈니스 로직을 `async with` 세션 블록 하위로 올바르게 들여쓰기하여 감싸도록 수정
+
+---
+
+## [Codex MCP] PyCharm MCP 서버 연결 실패
+**상황:** Codex 시작 후 MCP 도구 목록 로딩 중 `pycharm` 서버가 응답하지 않음
+**원인:** `/Users/User/.codex/config.toml`에 `http://127.0.0.1:64342/stream` PyCharm MCP 서버가 등록되어 있었지만 해당 포트에 리스닝 프로세스가 없었음
+**해결:** 사용하지 않는 `pycharm` MCP 서버 등록을 `.codex/config.toml`에서 제거
