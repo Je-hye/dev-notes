@@ -1,5 +1,10 @@
 # Troubleshooting
 
+## [Open WebUI] 파일 업로드 후 모델이 PDF 내용을 읽지 못함
+**상황:** disasterTV 프로젝트 — Open WebUI 업그레이드(→ latest main, 2026-07-01) 후 PDF 파일 업로드 시 모델이 "PDF를 분석할 수 없다"고 응답
+**원인:** 업그레이드 후 파일 처리 방식이 RAG(벡터 청킹) 기본값으로 변경됨. 파일을 먼저 업로드하면 93개 청크로 쪼개져 전체 문서 구조 파악 불가
+**해결:** 프롬프트 전송 시 PDF 파일을 매번 함께 첨부. 파일 단독 사전 업로드 금지
+
 ## [DB] test_db.py DB 연결 실패
 **상황:** DB 연결 테스트 중
 **원인:** 비밀번호가 str 타입이 아님
@@ -48,3 +53,24 @@ python3 -c "import sys; sys.path.append('.'); import step4_evaluate; print('Synt
 **상황:** `agy models`와 Antigravity CLI 실행 시 로그인되지 않았다는 오류와 MCP JSON 파싱 오류가 발생
 **원인:** Antigravity keyring 인증이 완료되지 않았고 `~/.gemini/config/mcp_config.json` 등 MCP 설정 파일 3개가 빈 파일이었음
 **해결:** Antigravity 대화형 CLI로 Google 계정 로그인을 완료하고 빈 MCP 설정 파일을 유효한 `{}` JSON으로 수정한 뒤, `agy models`와 실제 모델 요청 성공을 확인
+
+---
+
+## [Docker Compose] 정규화된 네트워크 출력 형식 불일치
+**상황:** eunhye-wiki의 Public/Private 네트워크 격리 회귀 테스트 실행 중 실패
+**원인:** `docker compose config --format json`이 서비스 네트워크를 배열이 아닌 객체로 정규화했지만 테스트가 배열을 가정함
+**해결:** 정규화된 네트워크 객체의 키를 집합으로 변환해 기대한 네트워크 이름과 비교하도록 수정
+
+---
+
+## [Next.js] Next 및 PostCSS 취약점 감사 실패
+**상황:** eunhye-wiki 웹 의존성 잠금 파일 생성 후 `npm audit`에서 high 및 moderate 취약점 발견
+**원인:** `next@15.5.7`의 알려진 취약점과 Next가 의존하는 `postcss<8.5.10`의 XSS 취약점
+**해결:** Next를 `15.5.19`로 올리고 npm override로 `postcss@8.5.10`을 고정해 `npm audit` 0건을 확인
+
+---
+
+## [Docker] Next.js 이미지 빌드 시 public 디렉터리 누락
+**상황:** eunhye-wiki 웹 Docker 이미지의 런타임 스테이지에서 `/app/public` 복사 실패
+**원인:** 정적 자산이 없어 `public` 디렉터리가 생성되지 않았지만 Dockerfile이 해당 경로가 항상 존재한다고 가정함
+**해결:** 빌드 스테이지에서 `public` 디렉터리를 보장하고 `.dockerignore`로 `node_modules`와 `.next`를 제외한 뒤 전체 이미지 빌드 성공을 확인
