@@ -1,5 +1,15 @@
 # Troubleshooting
 
+## [Open WebUI + 로컬 LLM] PDF 파일 첨부 시 섹션 구조 hallucination
+**상황:** disasterTV 프로젝트 — PDF를 첨부해서 섹션 구조 파악 요청 시 논문과 다른 섹션 목록 반환
+**원인:** 로컬 모델이 PDF를 직접 파싱하지 못하고 일반적인 논문 구조를 hallucinate
+**해결:** pdftotext로 txt 변환 후 txt 파일을 첨부해서 전송
+
+## [pdftotext] 멀티라인 명령어 실행 시 경로 인식 실패
+**상황:** disasterTV 프로젝트 — pdftotext 명령어가 2줄로 분리된 상태로 실행되어 출력 경로를 별도 명령으로 인식, "no such file or directory" 오류 발생
+**원인:** 명령어가 두 줄에 걸쳐 복사됨. zsh가 두 번째 줄을 독립 명령으로 해석
+**해결:** 입력 경로와 출력 경로를 한 줄로 붙여서 실행
+
 ## [Open WebUI] 파일 업로드 후 모델이 PDF 내용을 읽지 못함
 **상황:** disasterTV 프로젝트 — Open WebUI(latest main, 2026-07-01) 에서 PDF 파일만 먼저 업로드 시 모델이 "PDF를 분석할 수 없다"고 응답. 로그 상 파일은 RAG 벡터DB에 93개 청크로 처리됨은 확인.
 **원인:** 확인 필요 — RAG 청킹이 원인인지, 업그레이드로 인한 변경인지 미검증
