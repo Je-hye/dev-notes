@@ -22,3 +22,7 @@
 | [LLM-to-Notes](Projects/llm-to-notes.md) | JavaScript, Notion API | ChatGPT/Gemini → Notion 크롬 익스텐션 |
 | [AI Vision](Projects/ai-vision.md) | FastAPI, OpenCV, Roboflow | 실시간 제스처 감지 대시보드 |
 | [반도체 공정 분석](Projects/semiconductor-analysis.md) | Python, Pandas | 공정별 불량 원인 분석 및 수율 개선 |
+| [WIZE](Projects/wize.md) | FastAPI, React, Claude API, Google APIs | 구글폼 수강 신청 자동화 MVP |
+| [SkillSeeker FE](Projects/skillseeker-fe.md) | React, Vite, Gemini CLI | 면접 기록·AI 피드백 서비스 FE |
+| [gesture-slides](Projects/gesture-slides.md) | MediaPipe Hands, HTML/JS | 손동작으로 슬라이드 제어하는 브라우저 데모 |
+| [my-ai-agents](Projects/my-ai-agents.md) | Claude Code, Markdown | 반복 개발·학습 작업 자동화 에이전트 모음 |
