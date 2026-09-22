@@ -26,3 +26,4 @@
 | [SkillSeeker FE](Projects/skillseeker-fe.md) | React, Vite, Gemini CLI | 면접 기록·AI 피드백 서비스 FE |
 | [gesture-slides](Projects/gesture-slides.md) | MediaPipe Hands, HTML/JS | 손동작으로 슬라이드 제어하는 브라우저 데모 |
 | [my-ai-agents](Projects/my-ai-agents.md) | Claude Code, Markdown | 반복 개발·학습 작업 자동화 에이전트 모음 |
+| [math-handwriting-solver](Projects/math-handwriting-solver.md) | Python, Claude Vision, PIL | 수학 문제 사진·PDF → 손글씨 풀이 오버레이 CLI |
